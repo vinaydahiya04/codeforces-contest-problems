@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int nt;
+    cin>>nt;
+    while(nt--){
+        int n,k;
+        cin>>n>>k;
+        string s;
+        cin>>s;
+        int out = 0;
+        bool t = false;
+        int prev = -(k+1);
+        bool j = false;
+        for(int i = 0;i<n;i++){
+            if(s[i] == '1')j = true;
+        }
+        if(!j){
+            int x = ( (n + k )-prev)/(k+1);
+            if(x>0)x--;
+            cout<<x<<endl;
+            continue;
+        }
+ 
+        for(int i = 0;i<n;i++){
+            if(s[i] == '0')continue;
+            
+            int x = (i-prev)/(k+1);
+            
+            prev = i;
+            if(x>0){
+                x--;
+                out += x;
+            }
+        }
+        int x = ((n + k)-prev)/(k+1);
+        if(x>0){
+                x--;
+                out += x;
+            }
+ 
+ 
+        cout<<out<<endl;
+        
+    }
+    return 0;
+}
+ 

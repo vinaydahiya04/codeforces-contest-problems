@@ -1,0 +1,79 @@
+nt = int(input())
+while nt>0:
+    nt -= 1
+    s = input()
+    n = int(input())
+    a = []
+    occurance = {}
+    store = set()
+    for x in s:
+        store.add(x)
+        if(x in occurance):
+            occurance[x] += 1
+        else:
+            occurance[x] = 1
+    store = sorted(store, reverse=True)
+    final = []
+    position_of_zero = [] 
+    
+    num0 = 0
+ 
+    a = list(map(int,input().split()))
+ 
+    for i in range(0,n):
+        
+        final.append(0) 
+        if a[i] == 0:
+            num0 += 1
+            position_of_zero.append(i)
+ 
+    for i in range(0,len(store)):
+        if(occurance[store[i]] >= num0):
+            for q in position_of_zero:
+                final[q] = store[i]
+            store = store[i+1:]
+            break
+ 
+    changer = []
+ 
+    
+ 
+    
+    
+    while True:
+        if(len(position_of_zero) == n):
+            
+            break
+        
+        changer.clear()
+        num0 = 0
+        for i in range(0,n):
+            if type(final[i]) == str:
+                continue
+            else:
+                final[i] = 0
+                for k in position_of_zero:
+                    final[i] += abs(k-i)
+                
+                
+                if final[i] == a[i]:
+                    num0 += 1
+                    changer.append(i)
+                    
+        
+        for j in range(0,len(store)):
+            if(occurance[store[j]] >= num0):
+                
+                for q in changer:
+                    final[q] = store[j]
+                store = store[j+1:]
+                position_of_zero.extend(changer)
+                break
+    
+    for z in final:
+        print(z,end="")
+    print()
+        
+        
+ 
+ 
