@@ -1,0 +1,1 @@
+This repository contains all my submissions coded in C++ 14 or python 3 to problems of various codeforces div 2 and div 3 contests that i have been taking part since 16Th June 2020.
