@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+ 
+using namespace std;
+ 
+int main(){
+    int nt;
+    cin>>nt;
+    while(nt--){
+        bool flag = true;
+        
+        int n;
+        cin>>n;
+        
+        if(n == 1)flag = false;
+        float g = log2(n);
+        float k = floor(g);
+        
+        
+        
+        if(flag && (g-k) == 0 && n>2){flag = false;
+        }
+        if(flag && n%2 == 0){
+            n /=2;
+            
+            if(n>2)
+            flag = false;
+            
+            for(int i = 2;i<=sqrt(n);i++){
+                if(n%i ==0){
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        
+        if(flag){
+            cout<<"Ashishgup"<<endl;
+        }
+        
+        else{
+            cout<<"FastestFinger"<<endl;
+        }
+    }
+}
