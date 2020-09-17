@@ -1,0 +1,51 @@
+ #include <bits/stdc++.h>
+ #define mod 1000000007
+ #define siz 2000010
+ using namespace std;
+ 
+ 
+ 
+ 
+ int main(){
+   ios_base::sync_with_stdio(false);
+     cin.tie(nullptr);
+     int nt;
+     cin>>nt;
+ 
+     long long* ones = new long long[siz];
+     long long* zeros = new long long[siz];
+     
+     long long* ans = new long long[siz];
+ 
+     ones[0] = 0;
+     ones[1] = 0;
+     ones[2] = 1;
+     zeros[0] = 0;
+     zeros[1] = 1;
+     zeros[2] = 1;
+     ans[0] = 0;
+     ans[1] = 0;
+     ans[2] = 0;
+     ans[3] = 1;
+ 
+     for(int i = 3;i<siz;i++){
+         zeros[i] = (2*ones[i-1] + zeros[i-1])%mod;
+         ones[i] = zeros[i-1];
+         ans[i] = (ans[i-3] + zeros[i-2])%mod;
+     }
+ 
+     while(nt--){
+         int numn;
+         cin>>numn;
+         if(numn == 3){
+             cout<<4<<endl;
+             continue;
+         }
+         
+         int res = ((ans[numn])*4)%mod;
+         cout<<res<<endl;      
+        
+     }
+ 
+     return 0;
+}

@@ -1,0 +1,76 @@
+#include <bits/stdc++.h>
+ using namespace std;
+ 
+ 
+ 
+ int main(){
+   ios_base::sync_with_stdio(false);
+     cin.tie(nullptr);
+     int nt;
+     cin>>nt;
+     while(nt--){
+         int n;
+         cin>>n;
+         string s;
+         cin>>s;
+ 
+         int c1 = 0;
+         int c0 = 0;
+         int i1 = INT32_MAX;
+         int i0 = INT32_MIN;
+         int n1 = 0;
+         int n2 = 0;
+         bool r = true;
+         int ind = -1;
+         if(s[0] == '1') r = false;
+ 
+         for(int i = 0;i<n;i++){
+             if(s[i] == '1'){
+                c1++;
+                i1 = min(i1,i);
+                r = false;
+                n1++;
+                
+             }
+             else{
+                 c0++;
+                 i0 = max(i0,i);
+                 if(r) n2 ++;
+                 n1 = 0;
+                 ind = i;
+             }
+         }
+ 
+         if(c1 == 0 || c0 == 0){
+             cout<<s<<endl;
+             continue;
+         }
+         if(i1>i0){
+             cout<<s<<endl;
+             continue;
+         }
+ 
+         string k = "";
+         for(int i = 0;i<n2;i++){
+             k += '0';
+         }
+ 
+         r = true;
+         if(n2 == ind+1) r = false;
+         k += '0';
+         for(int i = 0;i<n1;i++){
+             k+= '1';
+         }
+ 
+         cout<<k<<endl;
+ 
+        
+        
+         
+        
+ 
+        
+     }
+ 
+     return 0;
+}
