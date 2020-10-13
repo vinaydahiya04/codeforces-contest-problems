@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+#define endl "\n"
+using namespace std;
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int nt;
+    cin>>nt;
+    while(nt--){
+        int n,m;
+        cin>>n;
+        
+        int* store = new int[n];
+        priority_queue<int> heap;
+        
+        int ne = 0;
+        int ng = 0;
+        int left = n;
+        int numt = 0;
+        
+        
+        
+        for(int i = 0;i<n;i++){
+            int x;
+            cin>>x;
+            store[i] = x;
+            if(x>1){ng++;
+            heap.push(x);
+            }
+            if(x == 2)numt++;
+        }
+        
+        int* numone = new int[n+1];
+        numone[n-1] = 0;
+        for(int i = n-2;i>=0;i--){
+            numone[i] = numone[i+1];
+            if(store[i] == 1)numone[i] = numone[i] + 1;
+            
+        }
+        
+        int c = 0;
+        
+        for(int i = 0;i<n;i++){
+            if(store[i] == 1 || i == n-1){
+                c++;
+                continue;
+            }
+            if(i!= n-2 && store[i+1] == 1 ){
+                int ut = 0;
+                for(int j = i+1;j<n-1;j++){
+                    if(store[j] == 1)ut++;
+                    else break;
+                }
+                
+                if(ut%2)c++;
+                
+            }    
+            
+            
+        }
+        
+        if(c%2 == 1){
+            cout<<"First"<<endl;
+        }
+        else{
+            cout<<"Second"<<endl;
+        }
+        
+       
+        
+       
+        
+    }
+    return 0;
+}
+

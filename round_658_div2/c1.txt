@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+string flip(int ind,string a){
+    for(int i =0;i<ind;i++){
+        if(a[i] == '0')a[i] = '1';
+        else a[i] = '0';
+    }
+    reverse(a.begin(),a.begin() + ind);
+    return a;
+}
+
+int main(){
+    int nt;
+    cin>>nt;
+    while(nt--){
+        int n;string a,b;
+        cin>>n>>a>>b;
+        vector<int> vec;
+        
+        for(int i = n-1;i>0;i--){
+            if(a[i] == b[i])continue;
+            if(a[0] == b[i]){
+                vec.push_back(1);
+                a = flip(1,a);
+                vec.push_back(i + 1);
+                a = flip(i+1,a);
+            }
+            else{
+                vec.push_back(i+1);
+                a = flip(i+1,a);
+            }
+        }
+        if(a[0]!=b[0])vec.push_back(1);
+        
+        cout<<vec.size()<<" ";
+        
+        for(auto k: vec){
+            cout<<k<<" ";
+        }
+        cout<<endl;
+        
+        
+    }
+}
