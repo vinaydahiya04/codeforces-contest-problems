@@ -1,0 +1,75 @@
+#include<bits/stdc++.h>
+#define int long long
+#define uint unsigned long long
+#define in(x) int x;cin>>x;
+#define w(t) int t; cin>> t; while(t--)
+#define Map unordered_map
+#define str(x) string x;cin>>x;
+#define mk(t,a,n) t* a = new t[n]
+#define inp(a,n) for(int i = 0;i<n;i++)cin>>a[i];
+#define inf 1e18
+#define endl "\n"
+#define MOD 1000000007
+#define L 2*index+1
+#define R 2*index+2
+const double pi = 3.14159265358979323846;
+using namespace std;
+
+int finder(int* st, int si,int ei, int val){//returns the index where the val element should be in the array
+    //and all elements before the returned value will be less than or equal to the value
+    //in case of equal values its better to check once again.
+    if(ei<0)return 0;
+    if(si>ei){
+        return si;
+    }
+    
+    if(si == ei){
+        if(val>st[si])return (si + 1);
+        
+        else return si ;
+    }
+    
+    int ci = (si + ei)/2;
+    if(st[ci] == val)return ci;
+    
+    if(st[ci]>val)return finder(st,si,ci-1,val);
+    else if(st[ci]<val) return finder(st,ci + 1,ei,val);
+    
+}
+
+int32_t main(){
+    int nt;
+    cin>>nt;
+    while(nt--){
+        in(n);
+        mk(int,a,n);
+        inp(a,n);
+        char** p = new char* [n+1];
+        for(int i = 0;i<=n;i++){
+            p[i] = new char[52];
+            for(int j = 0;j<52;j++)p[i][j] = 'z';
+            p[i][51] = '\0';
+        }
+        for(int i = 0;i<n;i++){
+            int x = a[i];
+            
+            for(int j = 0;j<x;j++){
+                p[i+1][j] = p[i][j];
+            }
+            
+            if(p[i][x]!= 'a')
+            p[i+1][x] = 'a';
+            else p[i+1][x] = 'b';
+        }
+        
+        for(int i = 0;i<=n;i++){
+            cout<<p[i]<<endl;
+        }
+        
+    }
+    return 0;
+}
+
+
+
+
